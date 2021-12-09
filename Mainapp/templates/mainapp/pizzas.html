@@ -1,0 +1,18 @@
+{% extends "Mainapp/base.html" %}
+
+{% block content %}
+
+<p>pizzas</p>
+
+<ul>
+    {% for p in pizzas %}
+    <li>
+        <a href="{% url 'Mainapp:pizza' p.id %}">{{p}}</a>
+    </li>
+    {%empty%}
+    <li>no topings have been added yet. </li>
+    {% endfor %}
+</ul>
+
+
+{% endblock content %}
