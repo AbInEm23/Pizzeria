@@ -8,11 +8,21 @@
     {% for t in toppings %}
     <li>
         <p>{{t.name}}</p>
+        {% if t.name == 'pineapple'%}
+        <img src="https://prods3.imgix.net/images/articles/2017_05/nonfeatured-hawaiian-pizza-origins.jpg?auto=format%2Ccompress&dpr=2.63&ixjsv=2.2.3&q=38&w=370"
+            alt="pineapple pizza">
+        {% endif %}
+        {% if t.name == 'Canadian bacon and sausage'%}
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQb6Xovmj8DpOIrojyZTq25WyBLRO9mIzJ80Q&usqp=CAU"
+            alt="sausage">
+        {% endif %}
     </li>
+
     {%empty%}
     <li>There are no toppings. </li>
     {% endfor %}
 </ul>
 
+<a href="{% url 'Mainapp:comment' pizza.id %}">Add a comment</a>
 
 {% endblock content %}
