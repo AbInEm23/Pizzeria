@@ -23,6 +23,21 @@
     {% endfor %}
 </ul>
 
+</ul>
+<p>Comments</p>
+{% for c in comment %}
+<li>
+    <p> {{c.name}}</p>
+</li>
+{% empty %}
+
+<li>No comments for this pizza have been added yet.</li>
+
+{% endfor %}
+
+</li>
+</ul>
+
 <a href="{% url 'Mainapp:comment' pizza.id %}">Add a comment</a>
 
 {% endblock content %}

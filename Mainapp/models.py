@@ -16,4 +16,13 @@ class Topping(models.Model):
 
     def __str__(self):
         return f"{self.name[:50]}..." #we dont want the whole text just the first 50 characters
-        
+
+class Comment(models.Model):
+    pizza = models.ForeignKey(Pizza, on_delete=models.CASCADE)
+    name = models.CharField(max_length=200)
+
+    class Meta:
+        verbose_name_plural = 'comment'
+
+    def __str__(self):
+        return self.name

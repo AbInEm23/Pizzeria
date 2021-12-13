@@ -1,6 +1,6 @@
 from django.shortcuts import redirect, render
 from .models import Pizza
-from .forms import PizzaForm
+from .forms import CommentForm
 # Create your views here.
 # Two types of requests - post and get 
 
@@ -22,7 +22,8 @@ def pizza(request, pizza_id):
     pizza = Pizza.objects.get(id= pizza_id)
 
     toppings = pizza.topping_set.all()
-    context = {'pizza':pizza, 'toppings':toppings} 
+    comment = pizza.comment_set.all()
+    context = {'pizza':pizza, 'toppings':toppings, 'comment':comment} 
     return render(request, 'Mainapp/pizza.html', context)
 
     #when the form is initially loaded into the screen is a get
@@ -31,9 +32,9 @@ def pizza(request, pizza_id):
 def comment(request,pizza_id):
     pizza = Pizza.objects.get(id= pizza_id)
     if request.method != 'POST':
-        form = PizzaForm()
+        form = CommentForm()
     else:
-        form = PizzaForm(data=request.POST)
+        form = CommentForm(data=request.POST)
         if form.is_valid(): #this will make sure your form complies w rules
             comment = form.save(commit= False)
             comment.pizza = pizza
